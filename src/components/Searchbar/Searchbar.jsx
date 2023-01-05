@@ -2,26 +2,27 @@ import { Component } from "react";
 
 class Searchbar extends Component {
   state = {
-    searchValue: null,
+    searchQuery: null,
   };
 
-  handelNameChange = e => {
-    const searchValue = e.currentTarget.value.toLowerCase();
+  handleChange = e => {
+    const searchQuery = e.currentTarget.value.toLowerCase();
 
-    this.setState({ searchValue });
+    this.setState({ searchQuery });
   }
 
-  handelSubmit = e => {
+  handleSubmit = e => {
     e.preventDefault();
+    e.target.reset();
 
-    this.props.onSubmit(this.state.searchValue);
-    this.setState({ searchValue: null });
+    this.props.onSubmit(this.state.searchQuery);
+    this.setState({ searchQuery: null });
   };
  
   render() {
     return (
       <header className="searchbar">
-        <form className="form" onSubmit={this.handelSubmit}>
+        <form className="form" onSubmit={this.handleSubmit}>
           <button type="submit" className="button">
             <span className="button-label">Search</span>
           </button>
@@ -32,7 +33,7 @@ class Searchbar extends Component {
           autoComplete="off"
           autoFocus
           placeholder="Search images and photos"
-          onChange={this.handelNameChange}  
+          onChange={this.handleChange}  
           />
         </form>
       </header>

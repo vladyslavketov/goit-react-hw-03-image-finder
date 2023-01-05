@@ -3,15 +3,17 @@ import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 
 class ImageGallery extends Component {
   render() {
-    const { imglist } = this.props;
+    const { imglist, onImgItemClick } = this.props;
 
     return (
       <ul className="gallery">
-        {imglist.map(({id, webformatURL}) => (
+        {imglist.map(({id, webformatURL, largeImageURL}) => (
           <ImageGalleryItem
             key={id}
             id={id}
             webformatURL={webformatURL}
+            largeImageURL={largeImageURL}
+            onImgClick={onImgItemClick}
           />))}
       </ul> 
     )
